@@ -1,0 +1,28 @@
+{
+  "files": {
+    "workflow-report": {
+      "filepath": "summary/wf-shrimpseq-report.html",
+      "title": "Workflow report",
+      "description": "Summary report for wf-shrimpseq (includes colored tables for sample_summary and positive_samples).",
+      "mime-type": "text/html",
+      "optional": false,
+      "type": "aggregated"
+    },
+    "positive-samples": {
+      "filepath": "summary/positive_samples.txt",
+      "title": "Positive samples (per-virus)",
+      "description": "Reads, SimpleRatio, Status per virus per sample",
+      "mime-type": "text/tab-separated-values",
+      "optional": false,
+      "type": "aggregated"
+    },
+    "sample-summary": {
+      "filepath": "summary/sample_summary.txt",
+      "title": "Sample summary",
+      "description": "Overall POS/INC/NEG, POS/INC pathogen lists, and the final two-target EHP interpretation",
+      "mime-type": "text/tab-separated-values",
+      "optional": false,
+      "type": "aggregated"
+    }
+  }
+}

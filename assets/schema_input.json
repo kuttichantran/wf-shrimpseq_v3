@@ -1,0 +1,49 @@
+{
+  "reads": {
+    "type": "string",
+    "format": "path",
+    "mimetype": "application/gzip",
+    "help_text": "Input reads (FASTQ/FASTQ.GZ). You can provide a glob like data/*.fastq.gz"
+  },
+  "out_dir": {
+    "type": "string",
+    "format": "directory-path",
+    "help_text": "Output directory"
+  },
+  "threads": {
+    "type": "integer",
+    "help_text": "Threads for minimap2/samtools",
+    "default": 4
+  },
+  "water_id": {
+    "type": "string",
+    "help_text": "Water control sample ID (derived from FASTQ filename)",
+    "default": "water_control"
+  },
+  "pseudocount": {
+    "type": "number",
+    "help_text": "Alpha pseudocount for SimpleRatio",
+    "default": 1
+  },
+  "pos_cutoff": {
+    "type": "number",
+    "help_text": "SimpleRatio >= this => POS",
+    "default": 10
+  },
+  "inc_cutoff": {
+    "type": "number",
+    "help_text": "SimpleRatio >= this and < pos_cutoff => INC",
+    "default": 3
+  },
+  "env_name": {
+    "type": "string",
+    "help_text": "(Advanced) Micromamba environment name",
+    "default": "wf_viral_screen_env"
+  },
+  "mamba_prefix": {
+    "type": "string",
+    "format": "directory-path",
+    "help_text": "(Advanced) Where micromamba stores envs/cache",
+    "default": ".micromamba"
+  }
+}

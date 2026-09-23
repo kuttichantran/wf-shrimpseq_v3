@@ -1,0 +1,102 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "Viral Simple Ratio Screen",
+  "description": "Minimap2 viral screening with water control SimpleRatio reporting",
+  "type": "object",
+  "definitions": {
+    "input_options": {
+      "title": "Input Options",
+      "type": "object",
+      "properties": {
+        "reads": {
+          "type": "string",
+          "format": "path",
+          "description": "Input reads (FASTQ/FASTQ.GZ). You can provide a glob like data/*.fastq.gz. Include the water control FASTQ in the same folder and name it 'water_control.fastq.gz' (or ensure the filename contains 'water_control').",
+          "default": "data/*.fastq.gz"
+        },
+        "ref": {
+          "type": "string",
+          "format": "file-path",
+          "description": "Reference genomes are bundled with the workflow — no reference upload needed.",
+          "default": "assets/reference.fasta"
+        }
+      },
+      "required": [
+        "reads"
+      ]
+    },
+    "output_options": {
+      "title": "Output Options",
+      "type": "object",
+      "properties": {
+        "out_dir": {
+          "type": "string",
+          "format": "directory-path",
+          "description": "Output directory",
+          "default": "results"
+        }
+      }
+    },
+    "analysis_options": {
+      "title": "Analysis Options",
+      "type": "object",
+      "properties": {
+        "threads": {
+          "type": "integer",
+          "description": "Threads for minimap2/samtools",
+          "default": 4
+        },
+        "water_id": {
+          "type": "string",
+          "description": "Water control sample name (FASTQ filename stem)",
+          "default": "water_control"
+        },
+        "pseudocount": {
+          "type": "number",
+          "description": "Alpha pseudocount for SimpleRatio",
+          "default": 1
+        },
+        "pos_cutoff": {
+          "type": "number",
+          "description": "SimpleRatio >= this => POS",
+          "default": 10
+        },
+        "inc_cutoff": {
+          "type": "number",
+          "description": "SimpleRatio >= this and < pos_cutoff => INC",
+          "default": 3
+        }
+      }
+    },
+    "advanced_options": {
+      "title": "Advanced Options",
+      "type": "object",
+      "properties": {
+        "env_name": {
+          "type": "string",
+          "description": "(Advanced) Micromamba environment name",
+          "default": "wf_viral_screen_env"
+        },
+        "mamba_prefix": {
+          "type": "string",
+          "description": "(Advanced) Where micromamba stores envs/cache",
+          "default": ".micromamba"
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "$ref": "#/definitions/input_options"
+    },
+    {
+      "$ref": "#/definitions/output_options"
+    },
+    {
+      "$ref": "#/definitions/analysis_options"
+    },
+    {
+      "$ref": "#/definitions/advanced_options"
+    }
+  ]
+}
